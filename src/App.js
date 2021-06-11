@@ -1,14 +1,18 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import { sum } from './helpers/calculator'
 
 function App() {
   const number1 = useRef(null);
   const number2 = useRef(null);
+  const [result,setResult] = useState(null);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(number1, number2)
+    const firstValue = number1.current.value;
+    const secondValue = number2.current.value;
+
+    setResult(sum(firstValue, secondValue));
   }
 
   return (
@@ -27,6 +31,7 @@ function App() {
         </div>
 
       </form>
+      <h1>{result}</h1>
     </div>
   );
 }
